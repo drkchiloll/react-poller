@@ -5,3 +5,4 @@ node_modules
 build/app.*
 build/vendor.*
 build/styles.*
+build/index.html

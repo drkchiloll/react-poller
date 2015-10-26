@@ -6,7 +6,7 @@ var HtmlwebpackPlugin = require('html-webpack-plugin'),
     path = require('path');
 
 // Vender Entry Point
-var pkg = require('./package.json');
+// var pkg = require('./package.json');
 
 var TARGET = process.env.npm_lifecycle_event,
     ROOT_PATH = path.resolve(__dirname),
@@ -28,19 +28,23 @@ var common = {
     loaders : [{
       test : /\.jsx?$/,
       loaders : ['babel'],
+      exclude : /(node_modules|server.js)/,
       include : APP_PATH
     }]
   },
   plugins : [
-    new HtmlwebpackPlugin({ title : 'WebPack Starter'})
+    new HtmlwebpackPlugin({
+      title : 'WebPack Starter',
+      inject : true,
+      template : APP_PATH + '/index.html'
+    })
   ]
 };
 
 if(TARGET === 'build') {
   module.exports = merge(common, {
     entry : {
-      app : APP_PATH,
-      vendor : Object.keys(pkg.dependencies)
+      app : APP_PATH
     },
     output : {
       path : BUILD_PATH,
@@ -57,10 +61,6 @@ if(TARGET === 'build') {
     plugins : [
       new Clean(['build']),
       new ExtractTextPlugin('styles.[chunkhash].css'),
-      new webpack.optimize.CommonsChunkPlugin(
-        'vendor',
-        '[name].[chunkhash].js'
-      ),
       new webpack.DefinePlugin({
         'process.env' : {
           // This affects react LIB Size

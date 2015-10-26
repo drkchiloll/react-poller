@@ -1,8 +1,4 @@
 .DS_Store
-build/bundle.js
+build/*
 node_modules
 *.log
-build/app.*
-build/vendor.*
-build/styles.*
-build/index.html

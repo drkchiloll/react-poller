@@ -2,3 +2,6 @@
 build/bundle.js
 node_modules
 *.log
+build/app.*
+build/vendor.*
+build/styles.*

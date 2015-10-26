@@ -7,7 +7,6 @@ import App from './components/App';
 main();
 
 function main() {
-  const app = document.createElement('div');
-  document.body.appendChild(app);
+  const app = document.getElementsByClassName('container')[0];
   ReactDOM.render(<App />, app);
 }

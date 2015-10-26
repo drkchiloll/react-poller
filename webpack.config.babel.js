@@ -19,13 +19,6 @@ var common = {
     path : BUILD_PATH,
     filename : 'bundle.js'
   },
-  devServer : {
-    historyApiFallback : true,
-    port : 3000,
-    hot : true,
-    inline : true,
-    progress : true
-  },
   module : {
     loaders : [{
       test : /\.css$/,
@@ -38,7 +31,6 @@ var common = {
     }]
   },
   plugins : [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlwebpackPlugin({ title : 'WebPack Starter'})
   ]
 };
@@ -48,6 +40,7 @@ if(TARGET === 'start' || !TARGET) {
     devtool : 'eval-source-map',
     devServer : {
       historyApiFallback : true,
+      port : 3030,
       hot : true,
       inline : true,
       progress : true
